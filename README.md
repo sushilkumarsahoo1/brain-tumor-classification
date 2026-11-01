@@ -8,18 +8,17 @@ A deep-learning image classification project that predicts one of four classes f
 
 Both models were evaluated on the same held-out test set of **1,600 images** (400 images per class).
 
-| Metric | ResNet-50 (RadImageNet) | MobileNetV3-Large |
-|---|---:|---:|
-| Test accuracy | 82.12% | **88.44%** |
-| Macro precision | 82.53% | **88.97%** |
-| Macro recall | 82.12% | **88.44%** |
-| Macro F1-score | 81.48% | **88.12%** |
-| Weighted precision | 82.53% | **88.97%** |
-| Weighted recall | 82.12% | **88.44%** |
-| Weighted F1-score | 81.48% | **88.12%** |
-| Correct predictions | 1,314 / 1,600 | **1,415 / 1,600** |
-| Incorrect predictions | 286 | **185** |
-| Measured inference time per image | 3.10 ms | **0.94 ms** |
+| Metric                | ResNet-50 (RadImageNet) | MobileNetV3-Large |
+| --------------------- | ----------------------: | ----------------: |
+| Test accuracy         |                  82.12% |        **88.44%** |
+| Macro precision       |                  82.53% |        **88.97%** |
+| Macro recall          |                  82.12% |        **88.44%** |
+| Macro F1-score        |                  81.48% |        **88.12%** |
+| Weighted precision    |                  82.53% |        **88.97%** |
+| Weighted recall       |                  82.12% |        **88.44%** |
+| Weighted F1-score     |                  81.48% |        **88.12%** |
+| Correct predictions   |           1,314 / 1,600 | **1,415 / 1,600** |
+| Incorrect predictions |                     286 |           **185** |
 
 ![Overall test-set comparison of accuracy and macro F1-score](assets/model-comparison.png)
 
@@ -27,12 +26,12 @@ In this experiment, MobileNetV3-Large scored **6.32 percentage points higher in 
 
 ## Per-class comparison
 
-| Class | ResNet-50 precision | ResNet-50 recall | ResNet-50 F1 | MobileNet precision | MobileNet recall | MobileNet F1 |
-|---|---:|---:|---:|---:|---:|---:|
-| Glioma | 89.67% | 67.25% | 76.86% | **96.66%** | 72.25% | **82.69%** |
-| Meningioma | 75.93% | 66.25% | 70.76% | 81.82% | **83.25%** | **82.53%** |
-| No tumor | 78.37% | 98.75% | 87.39% | **87.80%** | 99.00% | **93.07%** |
-| Pituitary | 86.13% | 96.25% | 90.91% | 89.62% | **99.25%** | **94.19%** |
+| Class      | ResNet-50 precision | ResNet-50 recall | ResNet-50 F1 | MobileNet precision | MobileNet recall | MobileNet F1 |
+| ---------- | ------------------: | ---------------: | -----------: | ------------------: | ---------------: | -----------: |
+| Glioma     |              89.67% |           67.25% |       76.86% |          **96.66%** |           72.25% |   **82.69%** |
+| Meningioma |              75.93% |           66.25% |       70.76% |              81.82% |       **83.25%** |   **82.53%** |
+| No tumor   |              78.37% |           98.75% |       87.39% |          **87.80%** |           99.00% |   **93.07%** |
+| Pituitary  |              86.13% |           96.25% |       90.91% |              89.62% |       **99.25%** |   **94.19%** |
 
 ![Recall and F1-score comparison for each class](assets/class-metrics-comparison.png)
 
@@ -61,12 +60,12 @@ These grids are qualitative examples, not a substitute for aggregate metrics. So
 
 The classifier maps each MRI image to one of four labels:
 
-| Label | Meaning |
-|---|---|
-| `glioma` | Glioma tumor class |
+| Label        | Meaning                |
+| ------------ | ---------------------- |
+| `glioma`     | Glioma tumor class     |
 | `meningioma` | Meningioma tumor class |
-| `notumor` | No-tumor class |
-| `pituitary` | Pituitary tumor class |
+| `notumor`    | No-tumor class         |
+| `pituitary`  | Pituitary tumor class  |
 
 ## Models
 
@@ -109,15 +108,15 @@ The test set was used for the reported final metrics. Avoid using it repeatedly 
 
 ## Training summary
 
-| Setting | ResNet-50 (RadImageNet) | MobileNetV3-Large |
-|---|---|---|
-| Input size | 224 × 224 | 224 × 224 |
-| Number of classes | 4 | 4 |
-| Initial stage | Frozen backbone; train classifier | Frozen backbone; train classifier |
-| Fine-tuning stage | `layer4` + final layer | Final feature block + classifier |
-| Optimizer | Adam | Adam |
-| Loss | Cross-entropy | Cross-entropy |
-| Validation accuracy after fine-tuning | 89.38% | 93.21% |
+| Setting                               | ResNet-50 (RadImageNet)           | MobileNetV3-Large                 |
+| ------------------------------------- | --------------------------------- | --------------------------------- |
+| Input size                            | 224 × 224                         | 224 × 224                         |
+| Number of classes                     | 4                                 | 4                                 |
+| Initial stage                         | Frozen backbone; train classifier | Frozen backbone; train classifier |
+| Fine-tuning stage                     | `layer4` + final layer            | Final feature block + classifier  |
+| Optimizer                             | Adam                              | Adam                              |
+| Loss                                  | Cross-entropy                     | Cross-entropy                     |
+| Validation accuracy after fine-tuning | 89.38%                            | 93.21%                            |
 
 ## Repository structure
 
@@ -183,18 +182,11 @@ Open the notebook and run its cells in order. Update the dataset path in the not
 - **Patient-level splitting should be verified.** If multiple slices or images from the same patient occur across splits, test performance may be overly optimistic. Patient identifiers and dataset provenance should be checked.
 - **Confidence is not certainty.** Softmax scores should not be interpreted as validated diagnostic probabilities.
 
-## Next steps
-
-- Package the selected model with a reproducible inference preprocessing pipeline.
-- Add a FastAPI inference endpoint and Docker configuration.
-- Validate on an independent, patient-level dataset before making stronger generalization claims.
-- Track model version, class order, preprocessing, and evaluation metrics together.
-
 ## Acknowledgements
 
 - **RadImageNet:** pretrained weights used for the ResNet-50 experiment.
 - **Torchvision / ImageNet:** pretrained weights used for MobileNetV3-Large.
-- **Dataset:** add the original dataset name, source URL, licence, and citation here before publishing the repository.
+- \*\*Dataset:https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset
 
 ---
 
