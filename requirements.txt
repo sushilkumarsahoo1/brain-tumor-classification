@@ -1,0 +1,7 @@
+torch
+torchvision
+fastapi
+uvicorn[standard]
+gradio
+pillow
+python-multipart
