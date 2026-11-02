@@ -4,6 +4,10 @@ A deep-learning image classification project that predicts one of four classes f
 
 > **Medical disclaimer:** This is an educational machine-learning project, not a medical device. It has not been clinically validated and must not be used to diagnose, rule out, or make treatment decisions about any person.
 
+## Live demo
+
+Try the deployed application: [Brain Tumor MRI Classifier](https://brain-tumor-classification-6uj9.onrender.com)
+
 ## Results at a glance
 
 Both models were evaluated on the same held-out test set of **1,600 images** (400 images per class).
@@ -121,18 +125,54 @@ The test set was used for the reported final metrics. Avoid using it repeatedly 
 ## Repository structure
 
 ```text
-brain-tumor-mri-classification/
-├── brain_tumor_classification.ipynb
+brain-tumor-classification/
+├── assets/
+│   ├── model-comparison.png
+│   ├── class-metrics-comparison.png
+│   ├── mobilenetv3-prediction-examples.png
+│   └── resnet50-prediction-examples.png
+├── .gitignore
+├── Brain_tumor_classifier.ipynb
+├── Dockerfile
 ├── README.md
+├── brain_tumor_mobilenetv3_large.pth
+├── main.py
+├── model.py
 ├── requirements.txt
-└── assets/
-    ├── model-comparison.png
-    ├── class-metrics-comparison.png
-    ├── mobilenetv3-prediction-examples.png
-    └── resnet50-prediction-examples.png
+└── test_model.py
 ```
 
-Rename the notebook entry to match your actual notebook filename. Keep large dataset files out of GitHub unless you have checked the dataset's licence and repository file-size limits. Model checkpoints can also be large; consider Git LFS or a model-hosting service if needed.
+## Run the application locally
+
+### Prerequisites
+
+- Git
+- Docker Desktop (running)
+
+### Steps
+
+Clone the repository and move into the project directory:
+
+```bash
+git clone https://github.com/sushilkumarsahoo1/brain-tumor-classification.git
+cd brain-tumor-classification
+```
+
+Build the Docker image:
+
+```bash
+docker build -t brain-tumor-classifier .
+```
+
+Start the application:
+
+```bash
+docker run --rm -p 8000:8000 brain-tumor-classifier
+```
+
+Open [http://localhost:8000](http://localhost:8000) in your browser, upload a brain MRI image, and click **Classify MRI**.
+
+To stop the application, press `Ctrl+C` in the terminal.
 
 ## Getting started
 
