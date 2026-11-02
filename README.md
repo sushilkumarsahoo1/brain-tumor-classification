@@ -7,6 +7,21 @@ A deep-learning image classification project that predicts one of four classes f
 ## Live demo
 
 Try the deployed application: [Brain Tumor MRI Classifier](https://brain-tumor-classification-6uj9.onrender.com)
+Test the classifier using the sample MRI images provided in this repository.
+
+| Class      | Sample images                                                               |
+| ---------- | --------------------------------------------------------------------------- |
+| Glioma     | [Image 1](sample_images/glioma/) · [Image 2](sample_images/glioma/)         |
+| Meningioma | [Image 1](sample_images/meningioma/) · [Image 2](sample_images/meningioma/) |
+| No tumor   | [Image 1](sample_images/notumor/) · [Image 2](sample_images/notumor/)       |
+| Pituitary  | [Image 1](sample_images/pituitary/) · [Image 2](sample_images/pituitary/)   |
+
+1. Open the live demo.
+2. Upload a sample MRI image.
+3. Click **Classify MRI**.
+4. Compare the predicted class with the sample's folder label.
+
+These samples come from the dataset's testing split. The folder labels are dataset labels, not medical diagnoses.
 
 ## Results at a glance
 
